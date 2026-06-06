@@ -38,7 +38,7 @@ class AirsimBridge:
         self.env_name = env_name
         self._sim_thread = threading.Thread(target=self._init_airsim_sim)
         self._sim_thread.start()
-        time.sleep(10)
+        time.sleep(float(os.environ.get("OPENFLY_AIRSIM_STARTUP_WAIT", "10")))
 
         self._client = airsim.MultirotorClient()
         self._client.confirmConnection()
@@ -59,6 +59,8 @@ class AirsimBridge:
             raise ValueError(f"Specified directory {env_dir} does not exist")
         
         command = ["bash", f"{env_dir}/LinuxNoEditor/start.sh"]
+        extra_args = os.environ.get("OPENFLY_AIRSIM_EXTRA_ARGS", "").split()
+        command.extend(extra_args)
         self.process = subprocess.Popen(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = self.process.communicate()
         # print("Command output:\n", stdout)
@@ -521,6 +523,7 @@ def main():
     stop = 0
     data_num = 0
     MAX_STEP = 100
+    scene_metrics = {}
 
     # Group by environment type
     env_groups = {}
@@ -621,7 +624,9 @@ def main():
             env_bridge.distance_to_goal.append(dis)
             if dis < 20:
                 env_bridge.success.append(1)
-                env_bridge.spl.append(env_bridge.traj_len / env_bridge.pass_len)
+                shortest_path = max(env_bridge.traj_len, 1e-12)
+                actual_path = max(env_bridge.pass_len, shortest_path)
+                env_bridge.spl.append(shortest_path / actual_path)
                 acc += 1
             else:
                 env_bridge.success.append(0)
@@ -629,6 +634,22 @@ def main():
             if flag_osr == 0:
                 env_bridge.osr.append(0)
             env_bridge.print_info()
+
+            metrics = scene_metrics.setdefault(
+                env_name,
+                {
+                    "count": 0,
+                    "ne_sum": 0.0,
+                    "sr_sum": 0.0,
+                    "osr_sum": 0.0,
+                    "spl_sum": 0.0,
+                },
+            )
+            metrics["count"] += 1
+            metrics["ne_sum"] += env_bridge.distance_to_goal[-1]
+            metrics["sr_sum"] += env_bridge.success[-1]
+            metrics["osr_sum"] += env_bridge.osr[-1]
+            metrics["spl_sum"] += env_bridge.spl[-1]
 
             if image_error:
                 continue
@@ -651,6 +672,15 @@ def main():
     final_stop = 1 - stop / data_num if data_num > 0 else 0
     
     print(f"\nEvaluation complete!")
+    if scene_metrics:
+        print(f"\n{'Scene':<20} {'NE/m':>10} {'SR/%':>10} {'OSR/%':>10} {'SPL/%':>10}")
+        for env_name, metrics in scene_metrics.items():
+            count = metrics["count"]
+            mean_ne = metrics["ne_sum"] / count if count > 0 else 0
+            mean_sr = metrics["sr_sum"] / count * 100 if count > 0 else 0
+            mean_osr = metrics["osr_sum"] / count * 100 if count > 0 else 0
+            mean_spl = metrics["spl_sum"] / count * 100 if count > 0 else 0
+            print(f"{env_name:<20} {mean_ne:>10.2f} {mean_sr:>10.2f} {mean_osr:>10.2f} {mean_spl:>10.2f}")
     print(f"Total samples: {data_num}")
     print(f"Final accuracy: {final_acc:.4f}")
     print(f"Final stop rate: {final_stop:.4f}")
