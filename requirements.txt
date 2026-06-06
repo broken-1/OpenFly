@@ -13,3 +13,4 @@ pandas
 aiofiles
 scipy
 importlib_metadata
+openai>=1.58.1

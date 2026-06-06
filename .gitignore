@@ -9,6 +9,7 @@ env_seg_info/
 
 image/
 test/
+outputs/
 env_*/
 uav_vln_data/
 google/
