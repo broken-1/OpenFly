@@ -1,0 +1,88 @@
+{
+  "experiment_id": "ra50-qwen27b-json-short-c124-10step-v1",
+  "model": {
+    "path": "/home/liusongbo/models/Qwen3.8-27B-FP8",
+    "precision": "FP8",
+    "revision": null,
+    "config_sha256": "74227dd615bf1ea975aa676bdf355a0379858c12f394b5365cd9dfa5fc2c70bc"
+  },
+  "decision_protocol": "generated_action_reason_json",
+  "max_steps": 10,
+  "history_images": 3,
+  "sample_limit": 4,
+  "concurrency": [
+    1,
+    2,
+    4
+  ],
+  "datasets": [
+    "configs/seen_airsim_23_random50_seed20260609.json"
+  ],
+  "runtime": {
+    "base_url": "http://127.0.0.1:8004/v1",
+    "served_model": "qwen3.8-27b-fp8",
+    "vllm": "0.26.0",
+    "torch": "2.11.0",
+    "transformers": "5.8.0",
+    "max_output_tokens": 128,
+    "thinking": false,
+    "prefix_cache": false,
+    "image_processor_cache": false,
+    "gpu": 1,
+    "renderer": "Vulkan",
+    "gpu_memory_utilization": 0.76,
+    "server_command": [
+      "/home/liusongbo/.venvs/vllm-qwen27b/bin/vllm",
+      "serve",
+      "/home/liusongbo/models/Qwen3.8-27B-FP8",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "8004",
+      "--served-model-name",
+      "qwen3.8-27b-fp8",
+      "--dtype",
+      "bfloat16",
+      "--gpu-memory-utilization",
+      "0.76",
+      "--max-model-len",
+      "16384",
+      "--max-num-seqs",
+      "4",
+      "--limit-mm-per-prompt",
+      "{\"image\":3,\"video\":0}",
+      "--no-enable-prefix-caching",
+      "--mm-processor-cache-gb",
+      "0",
+      "--compilation-config",
+      "{\"mode\":0,\"cudagraph_mode\":\"FULL_DECODE_ONLY\",\"cudagraph_capture_sizes\":[1,2,4]}"
+    ],
+    "server_env": {
+      "CUDA_VISIBLE_DEVICES": "1",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "VLLM_NO_USAGE_STATS": "1",
+      "VLLM_USE_FLASHINFER_SAMPLER": "0",
+      "VLLM_USE_DEEP_GEMM": "0"
+    },
+    "airsim_port": 42451,
+    "camera_size": [
+      1920,
+      1080
+    ],
+    "physics_paused": false,
+    "inactive_vehicles_parked_outside_scene": true,
+    "rgb_only_sensors": true,
+    "airsim_settings_template_sha256": "b4a0afb9c31a2c2344041c6acd6155c3a04e34142eb4b5deffe736f674e1ef0f",
+    "physics_engine": "ExternalPhysicsEngine"
+  },
+  "prompt": {
+    "version": "ra50-json-base-v1",
+    "path": "experiments/ra50_json_prompt_v1.txt",
+    "sha256": "57550661834cbbb382c440df348188e7bda58ad996b4c1f0afe93bd856fb6540",
+    "history_action_window": 10,
+    "historical_prompt_match": false
+  },
+  "seed": 20260609,
+  "launch_command": "bash scripts/run_ra50_multidrone.sh experiments/ra50_27b_short_c124.json outputs/ra50_multidrone/short_UNIQUE"
+}

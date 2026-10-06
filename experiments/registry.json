@@ -200,7 +200,7 @@
     },
     {
       "id": "ra50-qwen27b-json-c124-100step-v1",
-      "status": "planned",
+      "status": "stopped_by_user",
       "model": "Qwen3.8-27B-FP8",
       "dtype": "FP8",
       "backend": "vllm",
@@ -223,7 +223,29 @@
         "model_requests": 8,
         "named_vehicles": 4
       },
-      "comparability_note": "New archived JSON prompt; not a reproduction of historical July 8B prompt. Same tasks and settings across three concurrency groups; shared scene may expose other active drones."
+      "comparability_note": "New archived JSON prompt; not a reproduction of historical July 8B prompt. Same tasks and settings across three concurrency groups; shared scene may expose other active drones.",
+      "results_directory": "outputs/ra50_multidrone/full_20261006_124118",
+      "code_commit": "ef8d2a8d9c16f2a16c16599328125df36aab9fef",
+      "completed_samples_by_concurrency": {
+        "1": 5,
+        "2": 0,
+        "4": 0
+      },
+      "stop_reason": "User chose a short throughput comparison instead of three full RA50 passes."
+    },
+    {
+      "id": "ra50-qwen27b-json-short-c124-10step-v1",
+      "status": "planned",
+      "config": "experiments/ra50_27b_short_c124.json",
+      "max_steps": 10,
+      "samples_per_group": 4,
+      "concurrency": [
+        1,
+        2,
+        4
+      ],
+      "decision_protocol": "generated_action_reason_json",
+      "purpose": "Short end-to-end throughput comparison; not a navigation accuracy evaluation."
     }
   ]
 }
