@@ -235,7 +235,7 @@
     },
     {
       "id": "ra50-qwen27b-json-short-c124-10step-v1",
-      "status": "planned",
+      "status": "completed",
       "config": "experiments/ra50_27b_short_c124.json",
       "max_steps": 10,
       "samples_per_group": 4,
@@ -245,7 +245,16 @@
         4
       ],
       "decision_protocol": "generated_action_reason_json",
-      "purpose": "Short end-to-end throughput comparison; not a navigation accuracy evaluation."
+      "purpose": "Short end-to-end throughput comparison; not a navigation accuracy evaluation.",
+      "code_commit": "6f34ac196b3993716bfdf7ef96aad7cb07f6ee1b",
+      "github_equivalent_source_commit": "ccdde0c439e673a02cdcc1659a9ab01b095643fb",
+      "results_directory": "outputs/ra50_multidrone/short_20261006_132527",
+      "aggregate_results": "experiments/ra50_27b_short_results_20261006.json",
+      "completed_samples_by_concurrency": {
+        "1": 4,
+        "2": 4,
+        "4": 4
+      }
     }
   ]
 }
