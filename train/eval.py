@@ -40,7 +40,8 @@ class AirsimBridge:
         self._sim_thread.start()
         time.sleep(float(os.environ.get("OPENFLY_AIRSIM_STARTUP_WAIT", "10")))
 
-        self._client = airsim.MultirotorClient()
+        rpc_timeout = float(os.environ.get("OPENFLY_AIRSIM_RPC_TIMEOUT", "30"))
+        self._client = airsim.MultirotorClient(timeout_value=rpc_timeout)
         self._client.confirmConnection()
         self._client.enableApiControl(True)
         self._client.armDisarm(True)
@@ -61,7 +62,17 @@ class AirsimBridge:
         command = ["bash", f"{env_dir}/LinuxNoEditor/start.sh"]
         extra_args = os.environ.get("OPENFLY_AIRSIM_EXTRA_ARGS", "").split()
         command.extend(extra_args)
-        self.process = subprocess.Popen(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        sim_env = os.environ.copy()
+        sim_gpu = os.environ.get("OPENFLY_AIRSIM_CUDA_VISIBLE_DEVICES")
+        if sim_gpu is not None:
+            sim_env["CUDA_VISIBLE_DEVICES"] = sim_gpu
+        self.process = subprocess.Popen(
+            command,
+            env=sim_env,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
         stdout, stderr = self.process.communicate()
         # print("Command output:\n", stdout)
 
