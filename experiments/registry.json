@@ -197,6 +197,33 @@
         "SPL_pct": 3.104752110903629
       },
       "comparability_note": "Different decision protocol from July 8B baseline; not a model-only comparison."
+    },
+    {
+      "id": "ra50-qwen27b-json-c124-100step-v1",
+      "status": "planned",
+      "model": "Qwen3.8-27B-FP8",
+      "dtype": "FP8",
+      "backend": "vllm",
+      "decision_protocol": "generated_action_reason_json",
+      "config": "experiments/ra50_27b_c124.json",
+      "max_steps": 100,
+      "history_images": 3,
+      "samples_per_group": 50,
+      "concurrency": [
+        1,
+        2,
+        4
+      ],
+      "preflight": {
+        "status": "passed",
+        "code_commit": "dfd005cb9a9ff3ac06cef496e13f0e3ad5ee3891",
+        "directory": "outputs/ra50_multidrone/preflight_20261006_123744",
+        "samples": 4,
+        "max_steps": 2,
+        "model_requests": 8,
+        "named_vehicles": 4
+      },
+      "comparability_note": "New archived JSON prompt; not a reproduction of historical July 8B prompt. Same tasks and settings across three concurrency groups; shared scene may expose other active drones."
     }
   ]
 }
