@@ -258,7 +258,7 @@
     },
     {
       "id": "ra50-qwen27b-json-c4-full-100step-v1",
-      "status": "planned",
+      "status": "completed",
       "config": "experiments/ra50_27b_c4_full.json",
       "model": "Qwen3.8-27B-FP8",
       "backend": "vllm",
@@ -272,7 +272,25 @@
       "results_directory": "outputs/ra50_multidrone/full_c4_splitgpu_20261006_134050",
       "comparability_note": "Same archived policy and runtime as the completed short concurrency test, with full RA50 and a 100-step limit. Historical July 8B prompt not archived; not an exact reproduction.",
       "model_gpu": 1,
-      "simulator_gpu": 0
+      "simulator_gpu": 0,
+      "code_commit": "bd73e791cd68dfa29d20d2aea2cd8af46730216e",
+      "completed_samples": 50,
+      "aggregate_results": "experiments/ra50_27b_c4_full_results_20261006.json",
+      "finished_at": "2026-10-06T16:45:58.256711+08:00",
+      "scores": {
+        "phase": "ra50",
+        "concurrency": 4,
+        "samples": 50,
+        "wall_s": 11022.955374474637,
+        "tasks_per_hour": 16.32955898713134,
+        "actions_per_second": 0.2891239138443754,
+        "mean_steps": 63.74,
+        "mean_request_s": 9.92080669139185,
+        "NE": 215.52527101341485,
+        "SR_pct": 14.000000000000002,
+        "OSR_pct": 62.0,
+        "SPL_pct": 13.570496268762126
+      }
     }
   ]
 }
