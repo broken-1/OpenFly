@@ -291,6 +291,24 @@
         "OSR_pct": 62.0,
         "SPL_pct": 13.570496268762126
       }
+    },
+    {
+      "id": "ra50-qwen8b-fp8-json-c4-full-100step-v1",
+      "status": "planned",
+      "config": "experiments/ra50_8b_fp8_c4_full.json",
+      "model": "Qwen3-VL-8B-Instruct-FP8",
+      "backend": "vllm",
+      "decision_protocol": "generated_action_reason_json",
+      "max_steps": 100,
+      "history_images": 3,
+      "samples": 50,
+      "concurrency": [
+        4
+      ],
+      "model_gpu": 1,
+      "simulator_gpu": 0,
+      "results_directory": "outputs/ra50_multidrone/qwen8b_fp8_full_c4_20261006_184434",
+      "comparability_note": "Same RA50 tasks, JSON policy, steps, history, seed, renderer and split GPU layout as 27B. Reduced VRAM budget because unrelated GPU jobs are active; throughput is not a controlled model speed comparison."
     }
   ]
 }
