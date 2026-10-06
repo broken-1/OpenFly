@@ -321,11 +321,12 @@ def run(config, output):
     with socket.socket() as sock:
         if sock.connect_ex(('127.0.0.1',port))==0:
             raise RuntimeError('AirSim RPC port already in use; no existing process touched')
+    simulator_gpu = config['runtime'].get('simulator_gpu', config['runtime']['gpu'])
     command = ['bash', str(ROOT/'envs/airsim/env_airsim_23/LinuxNoEditor/start.sh'),
-               '-RenderOffscreen', '-NoSound', '-vulkan', '-graphicsadapter=1',
+               '-RenderOffscreen', '-NoSound', '-vulkan', f'-graphicsadapter={simulator_gpu}',
                '-settings='+str(settings.resolve())]
     env = os.environ.copy()
-    env['CUDA_VISIBLE_DEVICES']='1'
+    env['CUDA_VISIBLE_DEVICES']=str(simulator_gpu)
     reports = []
     with deployed_settings(settings, output), (output/'simulator.log').open('a') as log:
         process = subprocess.Popen(command, cwd=ROOT, env=env, stdout=log,
