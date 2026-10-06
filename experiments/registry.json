@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "runs": [
+    {
+      "id": "qwen8b-json-base-20260715",
+      "status": "complete",
+      "model": "Qwen3-VL-8B-Instruct",
+      "dtype": "BF16",
+      "backend": "transformers",
+      "decision_protocol": "generated_action_reason_json",
+      "code_commit": null,
+      "code_provenance": "Historical source/prompt not archived; do not assign current code or an inferred commit to this run.",
+      "max_steps": 100,
+      "history_images": 3,
+      "samples": 1392,
+      "datasets_at_registration": [
+        {
+          "path": "configs/seen_airsim_16.json",
+          "sha256": "a1a82833e9f98336e56cc72d5b5dc01bf99073d9c365e6faed7b53fa02a0311c",
+          "samples": 202
+        },
+        {
+          "path": "configs/seen_airsim_18.json",
+          "sha256": "64ab8c7edbed88bef8142907540dc707883feab6107759a5423667b6a7414077",
+          "samples": 203
+        },
+        {
+          "path": "configs/seen_airsim_23.json",
+          "sha256": "e3bce634dd01becd9069614023194d70698131135d1a508d368636536b6318c4",
+          "samples": 200
+        },
+        {
+          "path": "configs/seen_airsim_26.json",
+          "sha256": "c5468d3b31ac2ed901603dd5e8d34b3c4ccd784e5cc3323b85f59c24c30f62d6",
+          "samples": 202
+        },
+        {
+          "path": "configs/seen_airsim_gz.json",
+          "sha256": "0c5dc352b1f7ad6b5479967c157b8f764b34ed6a4e9e8377d086cdab4135f872",
+          "samples": 201
+        },
+        {
+          "path": "configs/seen_airsim_sh.json",
+          "sha256": "f870cc23e1cb35c965e0eab5769f730f4cae5bd327be8481229e7813fe31dde6",
+          "samples": 202
+        },
+        {
+          "path": "configs/seen_bigcity.json",
+          "sha256": "65e9f74ebdd120bdef033ce6834017bfb001eb78d7f5b68fb17422ae50bb2d81",
+          "samples": 182
+        }
+      ],
+      "dataset_provenance": "Hashes computed during registration, not at the historical run; historical dataset hashes were not recorded.",
+      "results_directory": "outputs/qwen_full_base/20260715_113150",
+      "scene_scores": [
+        {
+          "scene": "env_airsim_16",
+          "status": "complete",
+          "samples": "202",
+          "expected_samples": "202",
+          "ne_m": "119.3297",
+          "sr_pct": "3.9604",
+          "osr_pct": "26.7327",
+          "spl_pct": "3.8750",
+          "log": "outputs/qwen_full_base/20260715_113150/env_airsim_16_retry.log"
+        },
+        {
+          "scene": "env_airsim_18",
+          "status": "complete",
+          "samples": "203",
+          "expected_samples": "203",
+          "ne_m": "98.7850",
+          "sr_pct": "9.3596",
+          "osr_pct": "29.0640",
+          "spl_pct": "8.0732",
+          "log": "outputs/qwen_full_base/20260715_113150/env_airsim_18.log"
+        },
+        {
+          "scene": "env_airsim_23",
+          "status": "complete",
+          "samples": "200",
+          "expected_samples": "200",
+          "ne_m": "84.5339",
+          "sr_pct": "14.0000",
+          "osr_pct": "35.0000",
+          "spl_pct": "11.9715",
+          "log": "outputs/qwen_full_base/20260715_113150/env_airsim_23.log"
+        },
+        {
+          "scene": "env_airsim_26",
+          "status": "complete",
+          "samples": "202",
+          "expected_samples": "202",
+          "ne_m": "108.7106",
+          "sr_pct": "5.9406",
+          "osr_pct": "26.7327",
+          "spl_pct": "5.1441",
+          "log": "outputs/qwen_full_base/20260715_113150/env_airsim_26.log"
+        },
+        {
+          "scene": "env_airsim_gz",
+          "status": "complete",
+          "samples": "201",
+          "expected_samples": "201",
+          "ne_m": "99.7104",
+          "sr_pct": "6.9652",
+          "osr_pct": "23.3831",
+          "spl_pct": "5.4415",
+          "log": "outputs/qwen_full_base/20260715_113150/env_airsim_gz.log"
+        },
+        {
+          "scene": "env_airsim_sh",
+          "status": "complete",
+          "samples": "202",
+          "expected_samples": "202",
+          "ne_m": "113.7896",
+          "sr_pct": "8.4158",
+          "osr_pct": "29.7030",
+          "spl_pct": "7.5027",
+          "log": "outputs/qwen_full_base/20260715_113150/env_airsim_sh.log"
+        },
+        {
+          "scene": "env_ue_bigcity",
+          "status": "complete",
+          "samples": "182",
+          "expected_samples": "182",
+          "ne_m": "102.0036",
+          "sr_pct": "27.4725",
+          "osr_pct": "64.2857",
+          "spl_pct": "18.7288",
+          "log": "outputs/qwen_full_base/20260715_113150/env_ue_bigcity.log"
+        }
+      ]
+    },
+    {
+      "id": "qwen27b-token-base-20261005",
+      "status": "stopped_by_user",
+      "model": "Qwen3.8-27B-FP8",
+      "dtype": "FP8",
+      "backend": "vllm",
+      "decision_protocol": "action_token_logits_argmax",
+      "code_commit": null,
+      "code_provenance": "Started from uncommitted workspace; reviewed source hashes were saved after startup and are not a guarantee of initial process source.",
+      "max_steps": 100,
+      "history_images": 3,
+      "completed_samples": 94,
+      "planned_samples": 1392,
+      "datasets_at_registration": [
+        {
+          "path": "configs/seen_airsim_16.json",
+          "sha256": "a1a82833e9f98336e56cc72d5b5dc01bf99073d9c365e6faed7b53fa02a0311c",
+          "samples": 202
+        },
+        {
+          "path": "configs/seen_airsim_18.json",
+          "sha256": "64ab8c7edbed88bef8142907540dc707883feab6107759a5423667b6a7414077",
+          "samples": 203
+        },
+        {
+          "path": "configs/seen_airsim_23.json",
+          "sha256": "e3bce634dd01becd9069614023194d70698131135d1a508d368636536b6318c4",
+          "samples": 200
+        },
+        {
+          "path": "configs/seen_airsim_26.json",
+          "sha256": "c5468d3b31ac2ed901603dd5e8d34b3c4ccd784e5cc3323b85f59c24c30f62d6",
+          "samples": 202
+        },
+        {
+          "path": "configs/seen_airsim_gz.json",
+          "sha256": "0c5dc352b1f7ad6b5479967c157b8f764b34ed6a4e9e8377d086cdab4135f872",
+          "samples": 201
+        },
+        {
+          "path": "configs/seen_airsim_sh.json",
+          "sha256": "f870cc23e1cb35c965e0eab5769f730f4cae5bd327be8481229e7813fe31dde6",
+          "samples": 202
+        },
+        {
+          "path": "configs/seen_bigcity.json",
+          "sha256": "65e9f74ebdd120bdef033ce6834017bfb001eb78d7f5b68fb17422ae50bb2d81",
+          "samples": 182
+        }
+      ],
+      "results_directory": "outputs/qwen27b_full_base/20261005_234805",
+      "reviewed_source_sha256": {
+        "mcts/base_qwen.py": "60cf8db626961dbdabf733c0f34c8f895003db14c1f8b49fcb1f103978fe787d",
+        "mcts/qwen_vln.py": "6d5f073febc7d81f36c9187882d0b3f1b286be1d89222bc870163a85011a33a2",
+        "mcts/qwen_vllm.py": "f3d8d98442319479e987fdca62af3706c4ef4a0490685e906b4dcc2caa05d876",
+        "run_qwen3vl_full_base.sh": "ab3dd37564b9c3420e3029c3a1033f11f88b52c17c8f8bb7003862be962af9d0",
+        "run_qwen27b_full_base.sh": "81ebf8f399e2aef12ea3bfdf9b3c4ca03ab6ca29741ff8e23e9007d31d622b0b"
+      },
+      "scores": {
+        "NE": 356.2233047369713,
+        "SR_pct": 3.1914893617021276,
+        "OSR_pct": 46.808510638297875,
+        "SPL_pct": 3.104752110903629
+      },
+      "comparability_note": "Different decision protocol from July 8B baseline; not a model-only comparison."
+    }
+  ]
+}
