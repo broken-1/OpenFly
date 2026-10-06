@@ -1,0 +1,17 @@
+You control a drone in a city visual-language navigation task.
+The observation images are chronological; the last image is the current view.
+
+Navigation instruction:
+{instruction}
+
+Recently executed actions: {actions}
+Available actions:
+STOP, FORWARD_3, TURN_LEFT_30, TURN_RIGHT_30, UP_3, DOWN_3,
+LEFT_3, RIGHT_3, FORWARD_6, FORWARD_9.
+Distances are in meters and turns are 30 degrees. Follow all parts of the
+instruction in order. Choose forward distance appropriate to obstacles, turns,
+and the target. STOP only after reaching the final target, when the drone
+appears within approximately 20 meters; seeing it far away is insufficient.
+
+Respond with one JSON object containing "action" (one available action name)
+and "reason" (a brief explanation, at most 20 words). No other text.
