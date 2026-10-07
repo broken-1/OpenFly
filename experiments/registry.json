@@ -197,6 +197,202 @@
         "SPL_pct": 3.104752110903629
       },
       "comparability_note": "Different decision protocol from July 8B baseline; not a model-only comparison."
+    },
+    {
+      "id": "ra50-qwen27b-json-c124-100step-v1",
+      "status": "stopped_by_user",
+      "model": "Qwen3.8-27B-FP8",
+      "dtype": "FP8",
+      "backend": "vllm",
+      "decision_protocol": "generated_action_reason_json",
+      "config": "experiments/ra50_27b_c124.json",
+      "max_steps": 100,
+      "history_images": 3,
+      "samples_per_group": 50,
+      "concurrency": [
+        1,
+        2,
+        4
+      ],
+      "preflight": {
+        "status": "passed",
+        "code_commit": "dfd005cb9a9ff3ac06cef496e13f0e3ad5ee3891",
+        "directory": "outputs/ra50_multidrone/preflight_20261006_123744",
+        "samples": 4,
+        "max_steps": 2,
+        "model_requests": 8,
+        "named_vehicles": 4
+      },
+      "comparability_note": "New archived JSON prompt; not a reproduction of historical July 8B prompt. Same tasks and settings across three concurrency groups; shared scene may expose other active drones.",
+      "results_directory": "outputs/ra50_multidrone/full_20261006_124118",
+      "code_commit": "ef8d2a8d9c16f2a16c16599328125df36aab9fef",
+      "completed_samples_by_concurrency": {
+        "1": 5,
+        "2": 0,
+        "4": 0
+      },
+      "stop_reason": "User chose a short throughput comparison instead of three full RA50 passes."
+    },
+    {
+      "id": "ra50-qwen27b-json-short-c124-10step-v1",
+      "status": "completed",
+      "config": "experiments/ra50_27b_short_c124.json",
+      "max_steps": 10,
+      "samples_per_group": 4,
+      "concurrency": [
+        1,
+        2,
+        4
+      ],
+      "decision_protocol": "generated_action_reason_json",
+      "purpose": "Short end-to-end throughput comparison; not a navigation accuracy evaluation.",
+      "code_commit": "6f34ac196b3993716bfdf7ef96aad7cb07f6ee1b",
+      "github_equivalent_source_commit": "ccdde0c439e673a02cdcc1659a9ab01b095643fb",
+      "results_directory": "outputs/ra50_multidrone/short_20261006_132527",
+      "aggregate_results": "experiments/ra50_27b_short_results_20261006.json",
+      "completed_samples_by_concurrency": {
+        "1": 4,
+        "2": 4,
+        "4": 4
+      }
+    },
+    {
+      "id": "ra50-qwen27b-json-c4-full-100step-v1",
+      "status": "completed",
+      "config": "experiments/ra50_27b_c4_full.json",
+      "model": "Qwen3.8-27B-FP8",
+      "backend": "vllm",
+      "decision_protocol": "generated_action_reason_json",
+      "max_steps": 100,
+      "history_images": 3,
+      "samples_per_group": 50,
+      "concurrency": [
+        4
+      ],
+      "results_directory": "outputs/ra50_multidrone/full_c4_splitgpu_20261006_134050",
+      "comparability_note": "Same archived policy and runtime as the completed short concurrency test, with full RA50 and a 100-step limit. Historical July 8B prompt not archived; not an exact reproduction.",
+      "model_gpu": 1,
+      "simulator_gpu": 0,
+      "code_commit": "bd73e791cd68dfa29d20d2aea2cd8af46730216e",
+      "completed_samples": 50,
+      "aggregate_results": "experiments/ra50_27b_c4_full_results_20261006.json",
+      "finished_at": "2026-10-06T16:45:58.256711+08:00",
+      "scores": {
+        "phase": "ra50",
+        "concurrency": 4,
+        "samples": 50,
+        "wall_s": 11022.955374474637,
+        "tasks_per_hour": 16.32955898713134,
+        "actions_per_second": 0.2891239138443754,
+        "mean_steps": 63.74,
+        "mean_request_s": 9.92080669139185,
+        "NE": 215.52527101341485,
+        "SR_pct": 14.000000000000002,
+        "OSR_pct": 62.0,
+        "SPL_pct": 13.570496268762126
+      }
+    },
+    {
+      "id": "ra50-qwen8b-fp8-json-c4-full-100step-v1",
+      "status": "completed",
+      "config": "experiments/ra50_8b_fp8_c4_full.json",
+      "model": "Qwen3-VL-8B-Instruct-FP8",
+      "backend": "vllm",
+      "decision_protocol": "generated_action_reason_json",
+      "max_steps": 100,
+      "history_images": 3,
+      "samples": 50,
+      "concurrency": [
+        4
+      ],
+      "model_gpu": 1,
+      "simulator_gpu": 0,
+      "results_directory": "outputs/ra50_multidrone/qwen8b_fp8_full_c4_20261006_184434",
+      "comparability_note": "Same RA50 tasks, JSON policy, steps, history, seed, renderer and split GPU layout as 27B. Reduced VRAM budget because unrelated GPU jobs are active; throughput is not a controlled model speed comparison.",
+      "code_commit": "db3bc5043740269da8572e9f50635df1f17a2f07",
+      "completed_samples": 50,
+      "aggregate_results": "experiments/ra50_8b_fp8_c4_full_results_20261006.json",
+      "finished_at": "2026-10-06T21:30:18.914577+08:00",
+      "scores": {
+        "phase": "ra50",
+        "concurrency": 4,
+        "samples": 50,
+        "wall_s": 9866.948893433437,
+        "tasks_per_hour": 18.24272142726836,
+        "actions_per_second": 0.37519197068748594,
+        "mean_steps": 74.04,
+        "mean_request_s": 6.903359544211128,
+        "NE": 214.68741725935146,
+        "SR_pct": 6.0,
+        "OSR_pct": 66.0,
+        "SPL_pct": 6.0
+      }
+    },
+    {
+      "id": "ra50-qwen27b-json-c4-mtp7-short-v1",
+      "status": "failed",
+      "source_commit": "57f6898790163e8f82145bf1eb61fd7cfae137d3",
+      "output_directory": "outputs/ra50_multidrone/mtp7_short_20261007_101422",
+      "reason": "CUDA illegal memory access after 28 measured actions; FlashInfer FP8 KV with async scheduling.",
+      "aggregate_results": "experiments/mtp7_trial_results_20261007.json"
+    },
+    {
+      "id": "ra50-qwen27b-json-c4-mtp7-triton-short-v1",
+      "status": "failed",
+      "source_commit": "1f0bac33c855646135c3e4f0d178c7e7be13f36b",
+      "output_directory": "outputs/ra50_multidrone/mtp7_triton_short_20261007_102129",
+      "reason": "CUDA illegal memory access after 24 measured actions; target Triton, draft auto FlashInfer.",
+      "aggregate_results": "experiments/mtp7_trial_results_20261007.json"
+    },
+    {
+      "id": "ra50-qwen27b-json-c4-mtp7-compat-short-v1",
+      "status": "failed",
+      "source_commit": "94965c7aff704899f83c410f8751c4d511cb94e9",
+      "output_directory": "outputs/ra50_multidrone/mtp7_compat_short_20261007_102822",
+      "reason": "Startup validation rejected CUDA graph sizes 1/2/4: MTP7 verification requires multiples of eight.",
+      "aggregate_results": "experiments/mtp7_trial_results_20261007.json"
+    },
+    {
+      "id": "ra50-qwen27b-json-c4-mtp7-compat-short-v2",
+      "status": "completed",
+      "code_commit": "011daea96129ac29ae296656e032fa1669e50285",
+      "results_directory": "outputs/ra50_multidrone/mtp7_compat_v2_short_20261007_102934",
+      "aggregate_results": "experiments/mtp7_trial_results_20261007.json",
+      "scores": {
+        "phase": "ra50",
+        "concurrency": 4,
+        "samples": 4,
+        "wall_s": 119.45517821796238,
+        "tasks_per_hour": 120.54730665359037,
+        "actions_per_second": 0.33485362959330656,
+        "mean_steps": 10,
+        "mean_request_s": 9.131517145503313,
+        "NE": 24.850028499147584,
+        "SR_pct": 50.0,
+        "OSR_pct": 75.0,
+        "SPL_pct": 35.0
+      }
+    },
+    {
+      "id": "ra50-qwen27b-json-c4-mtp7-compat-control-short-v2",
+      "status": "completed",
+      "code_commit": "011daea96129ac29ae296656e032fa1669e50285",
+      "results_directory": "outputs/ra50_multidrone/mtp7_compat_control_short_20261007_103326",
+      "aggregate_results": "experiments/mtp7_trial_results_20261007.json",
+      "scores": {
+        "phase": "ra50",
+        "concurrency": 4,
+        "samples": 4,
+        "wall_s": 124.91251154243946,
+        "tasks_per_hour": 115.28068583512189,
+        "actions_per_second": 0.320224127319783,
+        "mean_steps": 10,
+        "mean_request_s": 9.639811083092354,
+        "NE": 35.58591021623481,
+        "SR_pct": 25.0,
+        "OSR_pct": 75.0,
+        "SPL_pct": 25.0
+      }
     }
   ]
 }

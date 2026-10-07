@@ -1,0 +1,36 @@
+{
+  "experiment_id": "ra50-qwen27b-json-c4-full-100step-v1",
+  "status": "completed",
+  "source_commit": "bd73e791cd68dfa29d20d2aea2cd8af46730216e",
+  "github_equivalent_source_commit": "d7a480b5afebe3e277bb53a4ff7a59e1f00063f5",
+  "results_directory": "outputs/ra50_multidrone/full_c4_splitgpu_20261006_134050",
+  "finished_at": "2026-10-06T16:45:58.256711+08:00",
+  "max_steps": 100,
+  "samples": 50,
+  "model_gpu": 1,
+  "simulator_gpu": 0,
+  "groups": [
+    {
+      "phase": "ra50",
+      "concurrency": 4,
+      "samples": 50,
+      "wall_s": 11022.955374474637,
+      "tasks_per_hour": 16.32955898713134,
+      "actions_per_second": 0.2891239138443754,
+      "mean_steps": 63.74,
+      "mean_request_s": 9.92080669139185,
+      "NE": 215.52527101341485,
+      "SR_pct": 14.000000000000002,
+      "OSR_pct": 62.0,
+      "SPL_pct": 13.570496268762126
+    }
+  ],
+  "actions": 3187,
+  "max_step_samples": 22,
+  "stopped_samples": 28,
+  "cleanup": {
+    "model_and_simulator_ports_released": true,
+    "original_simulator_settings_restored": true
+  },
+  "comparability_note": "New archived JSON policy; historical July 8B prompt unavailable. Full RA50 four-concurrency run only, no full single-concurrency comparison. Short throughput benchmark used a different GPU layout."
+}
