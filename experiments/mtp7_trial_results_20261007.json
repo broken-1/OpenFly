@@ -1,0 +1,83 @@
+{
+  "status": "completed_compatibility_trial",
+  "model": "Qwen3.8-27B-FP8",
+  "samples_per_group": 4,
+  "max_steps": 10,
+  "concurrency": 4,
+  "results": [
+    {
+      "label": "mtp7_compat",
+      "experiment_id": "ra50-qwen27b-json-c4-mtp7-compat-short-v2",
+      "source_commit": "011daea96129ac29ae296656e032fa1669e50285",
+      "output_directory": "outputs/ra50_multidrone/mtp7_compat_v2_short_20261007_102934",
+      "report": {
+        "phase": "ra50",
+        "concurrency": 4,
+        "samples": 4,
+        "wall_s": 119.45517821796238,
+        "tasks_per_hour": 120.54730665359037,
+        "actions_per_second": 0.33485362959330656,
+        "mean_steps": 10,
+        "mean_request_s": 9.131517145503313,
+        "NE": 24.850028499147584,
+        "SR_pct": 50.0,
+        "OSR_pct": 75.0,
+        "SPL_pct": 35.0
+      },
+      "generated_tokens": 1351,
+      "mean_first_token_s": 5.807498567807488,
+      "estimated_decode_tokens_per_second": 9.860053195827593
+    },
+    {
+      "label": "no_mtp_control",
+      "experiment_id": "ra50-qwen27b-json-c4-mtp7-compat-control-short-v2",
+      "source_commit": "011daea96129ac29ae296656e032fa1669e50285",
+      "output_directory": "outputs/ra50_multidrone/mtp7_compat_control_short_20261007_103326",
+      "report": {
+        "phase": "ra50",
+        "concurrency": 4,
+        "samples": 4,
+        "wall_s": 124.91251154243946,
+        "tasks_per_hour": 115.28068583512189,
+        "actions_per_second": 0.320224127319783,
+        "mean_steps": 10,
+        "mean_request_s": 9.639811083092354,
+        "NE": 35.58591021623481,
+        "SR_pct": 25.0,
+        "OSR_pct": 75.0,
+        "SPL_pct": 25.0
+      },
+      "generated_tokens": 1368,
+      "mean_first_token_s": 5.427777648367919,
+      "estimated_decode_tokens_per_second": 7.882178647086654
+    }
+  ],
+  "failures": [
+    {
+      "experiment_id": "ra50-qwen27b-json-c4-mtp7-short-v1",
+      "status": "failed",
+      "source_commit": "57f6898790163e8f82145bf1eb61fd7cfae137d3",
+      "output_directory": "outputs/ra50_multidrone/mtp7_short_20261007_101422",
+      "reason": "CUDA illegal memory access after 28 measured actions; FlashInfer FP8 KV with async scheduling."
+    },
+    {
+      "experiment_id": "ra50-qwen27b-json-c4-mtp7-triton-short-v1",
+      "status": "failed",
+      "source_commit": "1f0bac33c855646135c3e4f0d178c7e7be13f36b",
+      "output_directory": "outputs/ra50_multidrone/mtp7_triton_short_20261007_102129",
+      "reason": "CUDA illegal memory access after 24 measured actions; target Triton, draft auto FlashInfer."
+    },
+    {
+      "experiment_id": "ra50-qwen27b-json-c4-mtp7-compat-short-v1",
+      "status": "failed",
+      "source_commit": "94965c7aff704899f83c410f8751c4d511cb94e9",
+      "output_directory": "outputs/ra50_multidrone/mtp7_compat_short_20261007_102822",
+      "reason": "Startup validation rejected CUDA graph sizes 1/2/4: MTP7 verification requires multiples of eight."
+    }
+  ],
+  "action_throughput_speedup": 1.0456851967900413,
+  "wall_time_reduction_pct": 4.368924503309602,
+  "compatibility_settings": "BF16 KV, prefix cache off, async scheduling off, FlashAttention target and draft, 16k context, CUDA graph capture sizes 1/2/4/8/16/32. MTP enabled group drafts seven tokens. Image processor cache on in both groups.",
+  "limitations": "Single short dynamic navigation trial; generated actions/images differ. Original requested FP8 KV bundle failed, so this is a modified configuration, not a successful test of the original bundle. Decode speed is estimated from client streams and affected by scheduling. No navigation-quality claim.",
+  "cleanup": "All owned processes exited, ports released, original simulator settings restored."
+}

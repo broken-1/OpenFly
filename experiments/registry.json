@@ -327,6 +327,72 @@
         "OSR_pct": 66.0,
         "SPL_pct": 6.0
       }
+    },
+    {
+      "id": "ra50-qwen27b-json-c4-mtp7-short-v1",
+      "status": "failed",
+      "source_commit": "57f6898790163e8f82145bf1eb61fd7cfae137d3",
+      "output_directory": "outputs/ra50_multidrone/mtp7_short_20261007_101422",
+      "reason": "CUDA illegal memory access after 28 measured actions; FlashInfer FP8 KV with async scheduling.",
+      "aggregate_results": "experiments/mtp7_trial_results_20261007.json"
+    },
+    {
+      "id": "ra50-qwen27b-json-c4-mtp7-triton-short-v1",
+      "status": "failed",
+      "source_commit": "1f0bac33c855646135c3e4f0d178c7e7be13f36b",
+      "output_directory": "outputs/ra50_multidrone/mtp7_triton_short_20261007_102129",
+      "reason": "CUDA illegal memory access after 24 measured actions; target Triton, draft auto FlashInfer.",
+      "aggregate_results": "experiments/mtp7_trial_results_20261007.json"
+    },
+    {
+      "id": "ra50-qwen27b-json-c4-mtp7-compat-short-v1",
+      "status": "failed",
+      "source_commit": "94965c7aff704899f83c410f8751c4d511cb94e9",
+      "output_directory": "outputs/ra50_multidrone/mtp7_compat_short_20261007_102822",
+      "reason": "Startup validation rejected CUDA graph sizes 1/2/4: MTP7 verification requires multiples of eight.",
+      "aggregate_results": "experiments/mtp7_trial_results_20261007.json"
+    },
+    {
+      "id": "ra50-qwen27b-json-c4-mtp7-compat-short-v2",
+      "status": "completed",
+      "code_commit": "011daea96129ac29ae296656e032fa1669e50285",
+      "results_directory": "outputs/ra50_multidrone/mtp7_compat_v2_short_20261007_102934",
+      "aggregate_results": "experiments/mtp7_trial_results_20261007.json",
+      "scores": {
+        "phase": "ra50",
+        "concurrency": 4,
+        "samples": 4,
+        "wall_s": 119.45517821796238,
+        "tasks_per_hour": 120.54730665359037,
+        "actions_per_second": 0.33485362959330656,
+        "mean_steps": 10,
+        "mean_request_s": 9.131517145503313,
+        "NE": 24.850028499147584,
+        "SR_pct": 50.0,
+        "OSR_pct": 75.0,
+        "SPL_pct": 35.0
+      }
+    },
+    {
+      "id": "ra50-qwen27b-json-c4-mtp7-compat-control-short-v2",
+      "status": "completed",
+      "code_commit": "011daea96129ac29ae296656e032fa1669e50285",
+      "results_directory": "outputs/ra50_multidrone/mtp7_compat_control_short_20261007_103326",
+      "aggregate_results": "experiments/mtp7_trial_results_20261007.json",
+      "scores": {
+        "phase": "ra50",
+        "concurrency": 4,
+        "samples": 4,
+        "wall_s": 124.91251154243946,
+        "tasks_per_hour": 115.28068583512189,
+        "actions_per_second": 0.320224127319783,
+        "mean_steps": 10,
+        "mean_request_s": 9.639811083092354,
+        "NE": 35.58591021623481,
+        "SR_pct": 25.0,
+        "OSR_pct": 75.0,
+        "SPL_pct": 25.0
+      }
     }
   ]
 }

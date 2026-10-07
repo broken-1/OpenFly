@@ -1,0 +1,120 @@
+{
+  "experiment_id": "ra50-qwen27b-json-c4-mtp7-triton-short-v1",
+  "model": {
+    "path": "/home/liusongbo/models/Qwen3.8-27B-FP8",
+    "precision": "FP8",
+    "revision": null,
+    "config_sha256": "74227dd615bf1ea975aa676bdf355a0379858c12f394b5365cd9dfa5fc2c70bc"
+  },
+  "decision_protocol": "generated_action_reason_json",
+  "max_steps": 10,
+  "history_images": 3,
+  "sample_limit": 4,
+  "concurrency": [
+    4
+  ],
+  "datasets": [
+    "configs/seen_airsim_23_random50_seed20260609.json"
+  ],
+  "runtime": {
+    "base_url": "http://127.0.0.1:8004/v1",
+    "served_model": "qwen3.8-27b-fp8",
+    "vllm": "0.26.0",
+    "torch": "2.11.0",
+    "transformers": "5.8.0",
+    "max_output_tokens": 128,
+    "thinking": false,
+    "prefix_cache": true,
+    "image_processor_cache": true,
+    "gpu": 1,
+    "renderer": "Vulkan",
+    "gpu_memory_utilization": 0.94,
+    "server_command": [
+      "/home/liusongbo/.venvs/vllm-qwen27b/bin/vllm",
+      "serve",
+      "/home/liusongbo/models/Qwen3.8-27B-FP8",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "8004",
+      "--served-model-name",
+      "qwen3.8-27b-fp8",
+      "--dtype",
+      "bfloat16",
+      "--tensor-parallel-size",
+      "1",
+      "--gpu-memory-utilization",
+      "0.94",
+      "--max-model-len",
+      "131072",
+      "--max-num-seqs",
+      "4",
+      "--max-num-batched-tokens",
+      "8192",
+      "--kv-cache-dtype",
+      "fp8",
+      "--enable-prefix-caching",
+      "--mm-processor-cache-gb",
+      "4",
+      "--enable-chunked-prefill",
+      "--performance-mode",
+      "interactivity",
+      "--enable-auto-tool-choice",
+      "--tool-call-parser",
+      "qwen3_coder",
+      "--reasoning-parser",
+      "qwen3",
+      "--speculative-config",
+      "{\"method\": \"mtp\", \"num_speculative_tokens\": 7}",
+      "--limit-mm-per-prompt",
+      "{\"image\":3,\"video\":0}",
+      "--attention-backend",
+      "TRITON_ATTN"
+    ],
+    "server_env": {
+      "CUDA_VISIBLE_DEVICES": "1",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "VLLM_NO_USAGE_STATS": "1",
+      "VLLM_USE_FLASHINFER_SAMPLER": "0",
+      "VLLM_USE_DEEP_GEMM": "0"
+    },
+    "airsim_port": 42451,
+    "camera_size": [
+      1920,
+      1080
+    ],
+    "physics_paused": false,
+    "inactive_vehicles_parked_outside_scene": true,
+    "rgb_only_sensors": true,
+    "airsim_settings_template_sha256": "b4a0afb9c31a2c2344041c6acd6155c3a04e34142eb4b5deffe736f674e1ef0f",
+    "physics_engine": "ExternalPhysicsEngine",
+    "simulator_gpu": 0,
+    "model_gpu": 1,
+    "kv_cache_dtype": "fp8",
+    "max_model_len": 131072,
+    "max_num_batched_tokens": 8192,
+    "performance_mode": "interactivity",
+    "speculative_config": {
+      "method": "mtp",
+      "num_speculative_tokens": 7
+    },
+    "enable_chunked_prefill": true,
+    "attention_backend": "TRITON_ATTN"
+  },
+  "prompt": {
+    "version": "ra50-json-base-v1",
+    "path": "experiments/ra50_json_prompt_v1.txt",
+    "sha256": "57550661834cbbb382c440df348188e7bda58ad996b4c1f0afe93bd856fb6540",
+    "history_action_window": 10,
+    "historical_prompt_match": false
+  },
+  "seed": 20260609,
+  "launch_command": [
+    "bash",
+    "scripts/run_ra50_multidrone.sh",
+    "experiments/ra50_27b_mtp7_triton_short.json",
+    "OUTPUT_DIRECTORY"
+  ],
+  "comparison_note": "Explicit Triton attention workaround trial after the original MTP7/FlashInfer FP8 KV run failed with illegal memory access. Matched control changes only speculative config; not yet proven stable."
+}
