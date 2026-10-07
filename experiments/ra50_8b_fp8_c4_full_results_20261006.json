@@ -1,0 +1,37 @@
+{
+  "experiment_id": "ra50-qwen8b-fp8-json-c4-full-100step-v1",
+  "status": "completed",
+  "source_commit": "db3bc5043740269da8572e9f50635df1f17a2f07",
+  "github_equivalent_source_commit": null,
+  "source_provenance": "Local commit includes an unrelated keyboard control file not published with this experiment; experiment files are published in 619977dea50ebab1fff10c5a901f96fc6614a42c.",
+  "results_directory": "outputs/ra50_multidrone/qwen8b_fp8_full_c4_20261006_184434",
+  "finished_at": "2026-10-06T21:30:18.914577+08:00",
+  "max_steps": 100,
+  "samples": 50,
+  "model_gpu": 1,
+  "simulator_gpu": 0,
+  "groups": [
+    {
+      "phase": "ra50",
+      "concurrency": 4,
+      "samples": 50,
+      "wall_s": 9866.948893433437,
+      "tasks_per_hour": 18.24272142726836,
+      "actions_per_second": 0.37519197068748594,
+      "mean_steps": 74.04,
+      "mean_request_s": 6.903359544211128,
+      "NE": 214.68741725935146,
+      "SR_pct": 6.0,
+      "OSR_pct": 66.0,
+      "SPL_pct": 6.0
+    }
+  ],
+  "actions": 3702,
+  "max_step_samples": 29,
+  "stopped_samples": 21,
+  "cleanup": {
+    "model_and_simulator_ports_released": true,
+    "original_simulator_settings_restored": true
+  },
+  "comparability_note": "Same RA50 tasks, JSON policy, steps, history, seed, renderer and split GPU layout as 27B. Reduced VRAM budget because unrelated GPU jobs are active; throughput is not a controlled model speed comparison."
+}

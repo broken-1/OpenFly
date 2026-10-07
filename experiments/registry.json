@@ -294,7 +294,7 @@
     },
     {
       "id": "ra50-qwen8b-fp8-json-c4-full-100step-v1",
-      "status": "planned",
+      "status": "completed",
       "config": "experiments/ra50_8b_fp8_c4_full.json",
       "model": "Qwen3-VL-8B-Instruct-FP8",
       "backend": "vllm",
@@ -308,7 +308,25 @@
       "model_gpu": 1,
       "simulator_gpu": 0,
       "results_directory": "outputs/ra50_multidrone/qwen8b_fp8_full_c4_20261006_184434",
-      "comparability_note": "Same RA50 tasks, JSON policy, steps, history, seed, renderer and split GPU layout as 27B. Reduced VRAM budget because unrelated GPU jobs are active; throughput is not a controlled model speed comparison."
+      "comparability_note": "Same RA50 tasks, JSON policy, steps, history, seed, renderer and split GPU layout as 27B. Reduced VRAM budget because unrelated GPU jobs are active; throughput is not a controlled model speed comparison.",
+      "code_commit": "db3bc5043740269da8572e9f50635df1f17a2f07",
+      "completed_samples": 50,
+      "aggregate_results": "experiments/ra50_8b_fp8_c4_full_results_20261006.json",
+      "finished_at": "2026-10-06T21:30:18.914577+08:00",
+      "scores": {
+        "phase": "ra50",
+        "concurrency": 4,
+        "samples": 50,
+        "wall_s": 9866.948893433437,
+        "tasks_per_hour": 18.24272142726836,
+        "actions_per_second": 0.37519197068748594,
+        "mean_steps": 74.04,
+        "mean_request_s": 6.903359544211128,
+        "NE": 214.68741725935146,
+        "SR_pct": 6.0,
+        "OSR_pct": 66.0,
+        "SPL_pct": 6.0
+      }
     }
   ]
 }
